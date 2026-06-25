@@ -1,0 +1,71 @@
+# viral-factory.config.yaml
+# Ніша: подача котеджу на оренду (власники заміської нерухомості)
+
+niche:
+  slug: cottage-rental
+  keywords:
+    - "how to rent out my cabin"
+    - "airbnb cottage income"
+    - "how much i make renting my house"
+    - "vacation rental tips"
+    - "how to list on airbnb"
+    - "short term rental income"
+    - "renting out property tips"
+    - "airbnb host tips"
+    - "how to make money with vacation rental"
+    - "booking.com host"
+  accounts:
+    - "@airbnbhostcoach"
+    - "@vacationrentaltips"
+    - "@airbnbsuperhost"
+    - "@shorttermrentalwealth"
+    - "@rentalpropertycoach"
+  shop_queries:
+    - "airbnb host guide"
+    - "vacation rental checklist"
+    - "property management book"
+    - "welcome basket airbnb"
+
+thresholds:
+  min_views: 50000
+  min_comments: 500          # ніша менша — знизив поріг
+  min_outlier: 8
+
+product:
+  name: ListDirect  # TODO: затвердити назву
+  slug: cottage-app
+  one_demo_feature: >
+    Owner opens the app, taps "New listing", takes one photo of the cottage exterior.
+    Within 8 seconds: AI-generated Airbnb title, description, tags, and suggested price.
+    Then one more tap: a direct booking link (yourname.listdirect.app) ready to paste
+    into Airbnb bio — guests can book without the 15% fee.
+  brand_voice: >
+    Solo operator to solo operator. Talk like someone who found the answer after paying
+    Airbnb fees for too long — not like a SaaS company. Always use real numbers ($180
+    commission, 8 seconds, 3 bookings). Never say "streamline", "leverage", or "optimize".
+    Words the audience uses: STR, direct booking, solo operator, cleaning fee, superhost.
+    Never position as "investment tool for multiple properties" — always one cottage, one owner.
+  screen_record_path: "assets/listdirect-demo.mp4"
+
+audience:
+  portrait: >
+    Власники приватних будинків, котеджів або дач, які хочуть здавати нерухомість
+    в короткострокову оренду але не знають з чого почати або вже здають і хочуть
+    більше бронювань. Втомились від ручного управління — відповіді на запити,
+    синхронізація календарів, ціноутворення навмання. Бачать успішних Airbnb-хостів
+    і думають "я теж так хочу але не знаю як".
+  slang:
+    - "solo operator"
+    - "direct booking"
+    - "STR"
+    - "check-out chore list"
+    - "cleaning fee"
+    - "superhost"
+    - "getting your bag"
+    - "host life"
+    - "occupancy rate"
+    - "Gatlinburg cabin"
+    - "vacation rental"
+    - "мій котедж простоює"
+    - "скільки брати за ніч"
+    - "guests from hell"

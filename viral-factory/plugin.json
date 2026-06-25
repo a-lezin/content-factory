@@ -1,0 +1,62 @@
+{
+  "name": "viral-factory",
+  "version": "1.0.0",
+  "description": "Discover product ideas through viral video analysis. Content-Market Fit before Product-Market Fit.",
+  "skills": [
+    {
+      "name": "init-from-prd",
+      "path": "skills/init-from-prd/SKILL.md",
+      "description": "Read a PRD or method document and populate viral-factory.config.yaml with extracted niche, product, and audience context.",
+      "triggers": ["init from prd", "читай PRD", "ініціалізуй з PRD", "load prd", "read prd", "setup from prd", "налаштуй з документа"]
+    },
+    {
+      "name": "discover-niche",
+      "path": "skills/discover-niche/SKILL.md",
+      "description": "Run the full CMF pipeline: scrape TikTok → score → fan-out analysis → cluster pain → write niche report.",
+      "triggers": ["discover niche", "find niche", "знайди нішу", "що залітає", "analyze niche"]
+    },
+    {
+      "name": "decompose-video",
+      "path": "skills/decompose-video/SKILL.md",
+      "description": "Break a viral video into hook, structure, format, novelty element. Appends entry to video-templates.md.",
+      "triggers": ["decompose video", "розбери відео", "analyze video", "break down video", "template this video"]
+    },
+    {
+      "name": "spec-from-niche",
+      "path": "skills/spec-from-niche/SKILL.md",
+      "description": "Turn a validated niche report into a product spec with positioning, one-demo feature, pricing, and top hooks.",
+      "triggers": ["spec from niche", "product spec", "зроби spec", "product brief", "що будувати"]
+    },
+    {
+      "name": "recreate-video",
+      "path": "skills/recreate-video/SKILL.md",
+      "description": "Apply a proven video template to a product. Generates script + Higgsfield video + virality forecast.",
+      "triggers": ["recreate video", "згенеруй відео", "make video", "produce video", "create video"]
+    }
+  ],
+  "agents": [
+    {
+      "name": "video-analyst",
+      "path": "agents/video-analyst.md",
+      "description": "Fan-out worker: analyzes one video into structured extraction schema."
+    },
+    {
+      "name": "comment-miner",
+      "path": "agents/comment-miner.md",
+      "description": "Fan-out worker: extracts pain points, hooks, and commercial signals from video comments."
+    }
+  ],
+  "scripts": [
+    { "name": "scrape", "path": "scripts/scrape.ts" },
+    { "name": "score", "path": "scripts/score.ts" },
+    { "name": "cluster", "path": "scripts/cluster.ts" }
+  ],
+  "config": "viral-factory.config.yaml",
+  "artifacts_dir": "artifacts/viral-factory",
+  "mcp_dependencies": ["apify", "higgsfield"],
+  "context_priority": [
+    "viral-factory.config.yaml",
+    "wiki/overview.md",
+    "CLAUDE.md"
+  ]
+}

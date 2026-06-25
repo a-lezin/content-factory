@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\User\\\\Documents\\\\workshop\\\\viral-factory\\\\skills\\\\discover-niche\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\User\\\\Documents\\\\workshop\\\\viral-factory\\\\skills\\\\decompose-video\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\User\\\\Documents\\\\workshop\\\\viral-factory\\\\skills\\\\spec-from-niche\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\User\\\\Documents\\\\workshop\\\\viral-factory\\\\skills\\\\recreate-video\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\User\\\\Documents\\\\workshop\\\\viral-factory\\\\agents\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\User\\\\Documents\\\\workshop\\\\viral-factory\\\\scripts\\\\schemas\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\User\\\\Documents\\\\workshop\\\\viral-factory\\\\reference\")",
+      "PowerShell(Get-ChildItem -Recurse \"c:\\\\Users\\\\User\\\\Documents\\\\workshop\\\\viral-factory\" | Where-Object { -not $_.PSIsContainer } | ForEach-Object { $_.FullName.Replace\\(\"c:\\\\Users\\\\User\\\\Documents\\\\workshop\\\\viral-factory\\\\\", \"\"\\) } | Sort-Object)",
+      "mcp__claude_ai_apify__search-actors",
+      "mcp__claude_ai_apify__fetch-actor-details",
+      "mcp__claude_ai_apify__call-actor",
+      "mcp__claude_ai_apify__get-actor-run",
+      "mcp__claude_ai_apify__get-dataset-items"
+    ]
+  }
+}

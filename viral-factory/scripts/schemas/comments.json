@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CommentMinerRecord",
+  "description": "Structured extraction output from the comment-miner agent for one video's comments",
+  "type": "object",
+  "required": [
+    "video_url", "pain_points", "feature_requests", "audience_portrait",
+    "slang_and_phrases", "ready_hooks", "commercial_intent",
+    "top_emotions", "pain_density_score"
+  ],
+  "properties": {
+    "video_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Source video URL"
+    },
+    "pain_points": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Distinct problems or frustrations expressed by commenters. Specific and actionable.",
+      "minItems": 0
+    },
+    "feature_requests": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Capabilities or product features explicitly or implicitly requested in comments"
+    },
+    "audience_portrait": {
+      "type": "string",
+      "description": "2–3 sentence synthesis of who is commenting: their life situation, struggles, and language"
+    },
+    "slang_and_phrases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Verbatim phrases or slang terms the audience uses. Minimum 5 phrases. Copy exact wording.",
+      "minItems": 0
+    },
+    "ready_hooks": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Hooks derived from commenter language that could open a video. Under 10 words ideally.",
+      "minItems": 0,
+      "maxItems": 10
+    },
+    "commercial_intent": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Comments signaling purchase intent, product curiosity, or willingness to pay. Quote or paraphrase."
+    },
+    "top_emotions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "frustration", "hope", "skepticism", "excitement",
+          "relief", "anger", "overwhelm", "curiosity", "desperation", "humor"
+        ]
+      },
+      "description": "Dominant emotions expressed in comments"
+    },
+    "pain_density_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Fraction of comments expressing a problem, desire, or request vs. pure reactions"
+    },
+    "total_comments_analyzed": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Number of comments that were analyzed"
+    },
+    "analyzed_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this extraction was produced"
+    }
+  },
+  "additionalProperties": false
+}

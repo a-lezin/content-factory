@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CollectionRecord",
+  "description": "Raw video metadata collected by scrape.ts from TikTok or Instagram Reels",
+  "type": "object",
+  "required": [
+    "video_id", "platform", "url", "author", "author_url",
+    "posted_at", "duration_sec", "views", "likes", "comments_count",
+    "shares", "saves", "caption", "hashtags", "author_median_views", "scraped_at"
+  ],
+  "properties": {
+    "video_id": {
+      "type": "string",
+      "description": "Platform-specific unique video ID"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["tiktok", "reels"],
+      "description": "Source platform"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Full URL to the video"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author handle (e.g. @username)"
+    },
+    "author_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to author profile"
+    },
+    "posted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 publication timestamp"
+    },
+    "duration_sec": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Video duration in seconds"
+    },
+    "views": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total view count at time of scraping"
+    },
+    "likes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "comments_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "shares": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "saves": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of saves/bookmarks"
+    },
+    "caption": {
+      "type": "string",
+      "description": "Full video caption text"
+    },
+    "hashtags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of hashtags without # prefix"
+    },
+    "sound_id": {
+      "type": ["string", "null"],
+      "description": "Audio track ID if applicable"
+    },
+    "sound_is_trending": {
+      "type": "boolean",
+      "description": "Whether the sound is currently trending"
+    },
+    "video_file_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Direct CDN URL to video file, if available"
+    },
+    "video_file_path": {
+      "type": ["string", "null"],
+      "description": "Local file path after yt-dlp download"
+    },
+    "author_median_views": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Median views of author's last 20 videos. Required for OutlierScore."
+    },
+    "transcript": {
+      "type": ["string", "null"],
+      "description": "Whisper transcription with timestamps, populated by scrape.ts for top-50 videos"
+    },
+    "comments": {
+      "type": ["array", "null"],
+      "items": { "type": "string" },
+      "description": "Array of comment strings, populated for videos passing min_comments threshold"
+    },
+    "scraped_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this record was scraped"
+    }
+  },
+  "additionalProperties": false
+}

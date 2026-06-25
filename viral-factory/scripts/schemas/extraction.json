@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VideoExtractionRecord",
+  "description": "Structured extraction output from the video-analyst agent for one video",
+  "type": "object",
+  "required": [
+    "video_url", "hook", "hook_type", "structure",
+    "format", "novelty_element", "cta", "pacing", "sound_role",
+    "template_replicability", "notes"
+  ],
+  "properties": {
+    "video_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Source video URL"
+    },
+    "hook": {
+      "type": "string",
+      "description": "Exact opening line or description of first 3 seconds of action"
+    },
+    "hook_type": {
+      "type": "string",
+      "enum": [
+        "question",
+        "shock_stat",
+        "bold_claim",
+        "story_open",
+        "pain_call_out",
+        "transformation_reveal"
+      ],
+      "description": "Classification of the hook mechanism"
+    },
+    "structure": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 8,
+      "items": { "type": "string" },
+      "description": "Ordered list of narrative beats, named by function (e.g. 'pain_statement', 'product_reveal', 'cta')"
+    },
+    "format": {
+      "type": "string",
+      "description": "Format label (e.g. 'product-demo', 'before-after', 'talking-head-rant', 'tutorial-steps', 'text-overlay-montage', 'day-in-my-life')"
+    },
+    "novelty_element": {
+      "type": "string",
+      "description": "The one non-obvious thing this creator did that distinguishes this video from others in the same format"
+    },
+    "product_in_frame": {
+      "type": ["string", "null"],
+      "description": "The product being sold or promoted, if any. Null if no product."
+    },
+    "cta": {
+      "type": ["string", "null"],
+      "description": "The call to action, verbatim or paraphrased. Null if none."
+    },
+    "pacing": {
+      "type": "string",
+      "enum": ["fast-cut", "medium", "slow-build"],
+      "description": "Overall pacing rhythm of the video"
+    },
+    "sound_role": {
+      "type": "string",
+      "enum": [
+        "trending-audio",
+        "original-voiceover",
+        "silent-text",
+        "music-mood",
+        "sound-effect-punch"
+      ],
+      "description": "How audio contributes to the video's impact"
+    },
+    "template_replicability": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "How easily another product can be swapped in. 1.0 = fully generic format, 0.0 = creator-specific only."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional observations about what makes this video work. May contain pain signals."
+    },
+    "analyzed_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this extraction was produced"
+    }
+  },
+  "additionalProperties": false
+}

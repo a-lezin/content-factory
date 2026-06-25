@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TikTokShopProduct",
+  "description": "TikTok Shop product record with revenue signal. Used as Monetization component in NicheScore.",
+  "type": "object",
+  "required": ["product_name", "category", "monthly_revenue", "units", "top_videos"],
+  "properties": {
+    "product_name": {
+      "type": "string",
+      "description": "Product display name"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category (e.g. 'parental control', 'family safety')"
+    },
+    "monthly_revenue": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Estimated monthly revenue in USD"
+    },
+    "units": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Units sold per month"
+    },
+    "price_usd": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Product price in USD"
+    },
+    "shop_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "TikTok Shop product URL"
+    },
+    "top_videos": {
+      "type": "array",
+      "description": "Top-performing videos promoting this product",
+      "items": {
+        "type": "object",
+        "required": ["url", "revenue", "views"],
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Video URL"
+          },
+          "revenue": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Revenue attributed to this video in USD"
+          },
+          "views": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "View count of this video"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "scraped_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this data was collected"
+    },
+    "data_source": {
+      "type": ["string", "null"],
+      "enum": ["kalodata", "fastmoss", "echotik", "apify", "manual", null],
+      "description": "Where this revenue data came from"
+    }
+  },
+  "additionalProperties": false
+}
