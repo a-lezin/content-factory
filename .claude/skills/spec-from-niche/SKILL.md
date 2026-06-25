@@ -1,14 +1,13 @@
-# Skill: spec-from-niche
-
-**Triggers:** "зроби spec", "product spec", "spec from niche", "product brief", "що будувати", "build spec from niche", "what should I build"
-
-**Description:** Converts a validated niche report into a structured product spec. Reads the niche report and pain clusters, then writes `artifacts/viral-factory/specs/{product_slug}.md`.
-
 ---
+name: spec-from-niche
+description: Convert a validated niche report into a structured product spec — positioning, one-demo feature, pricing signal, and top hooks to test — written to artifacts/viral-factory/specs/{product_slug}.md. Trigger whenever the user wants to turn niche research into a product brief or decide what to build — phrases like "spec from niche", "product spec", "зроби spec", "product brief", "що будувати", "build spec from niche", "what should I build".
+---
+
+# spec-from-niche
 
 ## Pre-flight
 
-Read `viral-factory.config.yaml`. Extract `niche.slug`, `product.name`, `product.slug`, `product.one_demo_feature`, `product.brand_voice`, `audience.*`.
+Read `viral-factory.config.yaml`. If the config is not at the repo root, the template lives at `viral-factory/viral-factory.config.yaml`. Extract `niche.slug`, `product.name`, `product.slug`, `product.one_demo_feature`, `product.brand_voice`, `audience.*`.
 
 Check that `artifacts/viral-factory/niches/{slug}.md` exists. If it does not — tell the user: "No niche report found. Run /discover-niche first." and stop.
 
@@ -96,7 +95,7 @@ List top 5 with source attribution (from niche report hook bank or comment-miner
 From the niche report's "Recurring Formats" section, list the top 3 formats. For each:
 - Format label
 - Example URL from the niche report
-- Template reference in `reference/video-templates.md` (if decomposed — link the entry; if not, note "run /decompose-video on this URL")
+- Template reference in `viral-factory/reference/video-templates.md` (if decomposed — link the entry; if not, note "run /decompose-video on this URL")
 
 ---
 
@@ -135,7 +134,7 @@ TikTok Shop comps: {top product name at $X/mo} | Uncertainty: {low/medium/high}
 5. "{hook}" — [source: ...]
 
 ## Video formats to replicate
-1. {format}: {example URL} | Template: {reference/video-templates.md#anchor or "run /decompose-video"}
+1. {format}: {example URL} | Template: {viral-factory/reference/video-templates.md#anchor or "run /decompose-video"}
 2. {format}: {example URL} | Template: ...
 3. {format}: {example URL} | Template: ...
 

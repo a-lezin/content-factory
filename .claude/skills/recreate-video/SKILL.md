@@ -1,22 +1,21 @@
-# Skill: recreate-video
-
-**Triggers:** "recreate video", "згенеруй відео", "make video", "produce video", "create video", "generate video", "film video", "відтвори відео"
-
-**Description:** Takes a product spec and a proven video template, generates a script, produces a video via Higgsfield, and scores it with virality_predictor. Implements the "template swap" principle: format is proven, product is the variable.
-
 ---
+name: recreate-video
+description: Apply a proven video template to a product — generate a shot-format script, produce a video via Higgsfield, and score it with virality_predictor (the "template swap" principle where the format is proven and the product is the variable). Trigger whenever the user wants to generate, produce, or recreate a short-form marketing video for their product — phrases like "recreate video", "згенеруй відео", "make video", "produce video", "create video", "generate video", "відтвори відео".
+---
+
+# recreate-video
 
 ## Pre-flight
 
-Read `viral-factory.config.yaml`. Extract `product.*` and `audience.*`.
+Read `viral-factory.config.yaml`. If the config is not at the repo root, the template lives at `viral-factory/viral-factory.config.yaml`. Extract `product.*` and `audience.*`.
 
 Ask the user (if not specified):
 1. Which hook number to use? (from the product spec — "run /spec-from-niche first if no spec exists")
-2. Which format template? (from `reference/video-templates.md` — list available templates by name)
+2. Which format template? (from `viral-factory/reference/video-templates.md` — list available templates by name)
 
 Defaults if user doesn't answer:
 - Hook: #1 from the spec
-- Template: first entry in `reference/video-templates.md` that matches the niche
+- Template: first entry in `viral-factory/reference/video-templates.md` that matches the niche
 
 Check that `artifacts/viral-factory/specs/{product_slug}.md` exists. If not — tell the user to run `/spec-from-niche` first and stop.
 
@@ -26,7 +25,7 @@ Check that `artifacts/viral-factory/specs/{product_slug}.md` exists. If not — 
 
 Read:
 - Product spec: `artifacts/viral-factory/specs/{product_slug}.md`
-- Chosen template: the matching entry from `reference/video-templates.md`
+- Chosen template: the matching entry from `viral-factory/reference/video-templates.md`
 - Config: `product.one_demo_feature`, `product.brand_voice`, `audience.slang`, `audience.portrait`
 
 Identify the template's swap points (from the template entry). These are the only elements you change.

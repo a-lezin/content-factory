@@ -1,8 +1,9 @@
-# Skill: discover-niche
+---
+name: discover-niche
+description: Run the full Content-Market Fit pipeline for a niche defined in viral-factory.config.yaml — scrape TikTok, score, fan-out video/comment analysis, cluster pain points, and write a niche report at artifacts/viral-factory/niches/{slug}.md. Trigger whenever the user wants to find, validate, or analyze a viral niche — phrases like "discover niche", "find niche", "знайди нішу", "що залітає", "analyze niche", "validate niche", "яка ніша", or any request to figure out what content is going viral in a vertical.
+---
 
-**Triggers:** "знайди нішу", "discover niche", "find niche", "що залітає в {вертикаль}", "analyze niche", "validate niche", "яка ніша"
-
-**Description:** Runs the full Content-Market Fit pipeline for a niche defined in `viral-factory.config.yaml`. Outputs a niche report at `artifacts/viral-factory/niches/{slug}.md`.
+# discover-niche
 
 **Pipeline:** scrape → score → fan-out analysis → cluster pain → TikTok Shop signal → write report
 
@@ -11,7 +12,7 @@
 ## Pre-flight checks
 
 Before starting, verify:
-1. `viral-factory.config.yaml` exists in the repo root. If not, tell the user to create it from the template in the plugin's `viral-factory.config.yaml` and stop.
+1. `viral-factory.config.yaml` exists in the repo root. If not, tell the user to create it from the template in the plugin at `viral-factory/viral-factory.config.yaml` and stop.
 2. Apify MCP is connected. If not, tell the user to add it in settings and stop.
 3. Read the config: extract `niche.slug`, `niche.keywords`, `niche.accounts`, `niche.shop_queries`, and all `thresholds.*`.
 
@@ -19,12 +20,12 @@ Before starting, verify:
 
 ## Step 1 — Scrape TikTok content
 
-Run `npx ts-node scripts/scrape.ts` to print the Apify call instructions, then:
+Run `npx ts-node viral-factory/scripts/scrape.ts` to print the Apify call instructions, then:
 
 **1a. Keyword scrape** — call Apify MCP:
 - Actor: `apify/tiktok-scraper`
 - Input: `{ searchQueries: niche.keywords, maxItems: 200, resultsType: "posts" }`
-- Map results to `CollectionRecord[]` using `mapApifyResponseToCollection()` from `scripts/scrape.ts`
+- Map results to `CollectionRecord[]` using `mapApifyResponseToCollection()` from `viral-factory/scripts/scrape.ts`
 
 **1b. Account scrape** — if `niche.accounts` is non-empty, call Apify MCP:
 - Actor: `apify/tiktok-profile-scraper`
@@ -66,7 +67,7 @@ Verify the output file exists and contains at least 10 video records. If fewer �
 
 Run:
 ```
-npx ts-node scripts/score.ts \
+npx ts-node viral-factory/scripts/score.ts \
   --input artifacts/viral-factory/raw/{slug}.json \
   --output artifacts/viral-factory/scored/{slug}.json \
   --shop-data artifacts/viral-factory/raw/{slug}-shop.json
@@ -109,7 +110,7 @@ Build a `painDensityMap: Record<video_id, pain_density_score>` from results.
 
 ## Step 5 — Update scores with PainDensity
 
-Re-run score update inline (or call `updatePainDensity()` from `scripts/score.ts`) with the pain density map. Re-sort the top-10 by updated niche_score.
+Re-run score update inline (or call `updatePainDensity()` from `viral-factory/scripts/score.ts`) with the pain density map. Re-sort the top-10 by updated niche_score.
 
 ---
 
@@ -117,7 +118,7 @@ Re-run score update inline (or call `updatePainDensity()` from `scripts/score.ts
 
 Run:
 ```
-npx ts-node scripts/cluster.ts \
+npx ts-node viral-factory/scripts/cluster.ts \
   --extractions artifacts/viral-factory/extractions/{slug}.json \
   --comments artifacts/viral-factory/comments/{slug}.json \
   --output artifacts/viral-factory/clusters/{slug}.json \

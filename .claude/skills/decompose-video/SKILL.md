@@ -1,10 +1,9 @@
-# Skill: decompose-video
-
-**Triggers:** "розбери відео", "decompose video", "analyze video", "break down video", "template this video", "що робить це відео вірусним"
-
-**Description:** Decomposes one viral video into a reusable format template. Downloads the video, transcribes it, runs video-analyst, and appends the result to `reference/video-templates.md`.
-
 ---
+name: decompose-video
+description: Decompose one viral video into a reusable format template — hook, structure, novelty element — and append it to viral-factory/reference/video-templates.md. Downloads and transcribes the video, then runs the video-analyst agent. Trigger whenever the user shares a TikTok or Instagram Reels URL and wants to understand or template it — phrases like "decompose video", "розбери відео", "analyze video", "break down video", "template this video", "що робить це відео вірусним".
+---
+
+# decompose-video
 
 ## Pre-flight
 
@@ -56,7 +55,7 @@ Launch the `video-analyst` sub-agent with:
 - `transcript`: the Whisper transcript (or null)
 - `video_file_path`: the local download path (or null)
 
-Wait for the result. Verify it matches the schema in `scripts/schemas/extraction.json`. If the JSON is malformed — ask the agent to retry once.
+Wait for the result. Verify it matches the schema in `viral-factory/scripts/schemas/extraction.json`. If the JSON is malformed — ask the agent to retry once.
 
 ---
 
@@ -114,14 +113,14 @@ Author: {author}
 
 ## Step 7 — Append to catalog
 
-Append the template entry to `reference/video-templates.md`. Do not overwrite or replace existing entries — append after the last `---` divider.
+Append the template entry to `viral-factory/reference/video-templates.md`. Do not overwrite or replace existing entries — append after the last `---` divider.
 
 ---
 
 ## Step 8 — Report to user
 
 Tell the user:
-1. "Template added to reference/video-templates.md"
+1. "Template added to viral-factory/reference/video-templates.md"
 2. The format label and hook type
 3. Template replicability score and what it means in plain language
 4. The 2 most important swap points in one sentence

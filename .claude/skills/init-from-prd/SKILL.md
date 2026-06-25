@@ -1,10 +1,9 @@
-# Skill: init-from-prd
-
-**Triggers:** "init from prd", "ініціалізуй з PRD", "читай PRD", "завантаж PRD", "load prd", "read prd", "setup from prd", "налаштуй з документа"
-
-**Description:** Reads a PRD or method document and extracts structured information to populate `viral-factory.config.yaml`. Bridges the gap between a product/business document and the viral-factory discovery pipeline. Run this once before `/discover-niche` to pre-seed the config with niche keywords, audience signals, and product context.
-
 ---
+name: init-from-prd
+description: Read a PRD or method document and populate viral-factory.config.yaml with extracted niche keywords, audience signals, and product context. Use this BEFORE running /discover-niche to pre-seed the config. Trigger whenever the user wants to initialize or set up the viral-factory pipeline from a document — phrases like "init from prd", "ініціалізуй з PRD", "читай PRD", "завантаж PRD", "налаштуй з документа", "load prd", "read prd", "setup from prd", or any request to bootstrap the viral-factory config from a product or method doc.
+---
+
+# init-from-prd
 
 ## Pre-flight
 
@@ -16,7 +15,7 @@ If the file does not exist — tell the user and stop.
 
 Check whether `viral-factory.config.yaml` exists in the current directory:
 - If it exists: tell the user "Config already exists — extracted values will be merged in. Existing fields will be overwritten only if the PRD provides a clearer value."
-- If it does not exist: tell the user "No config found — will create a new one from scratch."
+- If it does not exist: tell the user "No config found — will create a new one from scratch." If no config exists at repo root, the template to copy from is `viral-factory/viral-factory.config.yaml`.
 
 ---
 
