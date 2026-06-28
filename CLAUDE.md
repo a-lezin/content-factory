@@ -8,7 +8,7 @@ This is **`viral-factory`** — a portable Claude Code *plugin*, not a runnable 
 
 The "program" is Claude Code itself. Skills (markdown SOPs in [viral-factory/skills/](viral-factory/skills/)) are step-by-step procedures that Claude executes by calling MCP tools, spawning sub-agents, and running the three TypeScript scripts. The scripts do *not* call Apify/Higgsfield themselves — Claude makes those MCP calls and pipes results into the scripts. Read a `SKILL.md` as the source of truth for how a command behaves.
 
-The plugin under [viral-factory/](viral-factory/) is meant to be installed into a *separate product repository* as a git submodule under `.claude/plugins/viral-factory`. This repo (`content-factory`) is the plugin's development home; it also contains the source PRDs/method docs at the root (`architecture (2).md`, `prd-*.md`, `viral-content-method.md`) and example pipeline outputs under [artifacts/viral-factory/](artifacts/viral-factory/).
+The plugin under [viral-factory/](viral-factory/) is meant to be installed into a *separate product repository* as a git submodule under `.claude/plugins/viral-factory`. This repo (`content-factory`) is the plugin's development home; it also contains the source PRDs/method docs under [docs/](docs/) (`docs/architecture.md`, `docs/prd-*.md`, `docs/viral-content-method.md`) and example pipeline outputs under [artifacts/viral-factory/](artifacts/viral-factory/).
 
 ## Architecture: the four-stage pipeline
 
