@@ -13,8 +13,8 @@
     {
       "name": "discover-niche",
       "path": "../.claude/skills/discover-niche/SKILL.md",
-      "description": "Run the full CMF pipeline: scrape TikTok → score → fan-out analysis → cluster pain → write niche report.",
-      "triggers": ["discover niche", "find niche", "знайди нішу", "що залітає", "analyze niche"]
+      "description": "Run the full CMF pipeline: seed expansion → scrape TikTok+Instagram (EN+UA) → batch author-median → wave-2 harvest → score → fan-out analysis → cluster pain → write niche report with Creator Leaderboard.",
+      "triggers": ["discover niche", "find niche", "знайди нішу", "що залітає", "analyze niche", "validate niche", "яка ніша", "яка ніша залітає"]
     },
     {
       "name": "decompose-video",
@@ -45,12 +45,17 @@
       "name": "comment-miner",
       "path": "../.claude/agents/comment-miner.md",
       "description": "Fan-out worker: extracts pain points, hooks, and commercial signals from video comments."
+    },
+    {
+      "name": "pain-clusterer",
+      "path": "../.claude/agents/pain-clusterer.md",
+      "description": "Clusters PainItem[] from comment-miner and video-analyst outputs into semantic PainCluster[] groups. Replaces the former Anthropic SDK call in cluster.ts."
     }
   ],
   "scripts": [
-    { "name": "scrape", "path": "scripts/scrape.ts" },
-    { "name": "score", "path": "scripts/score.ts" },
-    { "name": "cluster", "path": "scripts/cluster.ts" }
+    { "name": "scrape", "path": "scripts/scrape.py" },
+    { "name": "score", "path": "scripts/score.py" },
+    { "name": "cluster", "path": "scripts/cluster.py" }
   ],
   "config": "viral-factory.config.yaml",
   "artifacts_dir": "artifacts/viral-factory",

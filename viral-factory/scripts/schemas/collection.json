@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "CollectionRecord",
-  "description": "Raw video metadata collected by scrape.ts from TikTok or Instagram Reels",
+  "description": "Raw video metadata collected by scrape.py from TikTok or Instagram Reels",
   "type": "object",
   "required": [
     "video_id", "platform", "url", "author", "author_url",
@@ -108,6 +108,15 @@
       "type": "string",
       "format": "date-time",
       "description": "ISO 8601 timestamp when this record was scraped"
+    },
+    "geo": {
+      "type": ["string", "null"],
+      "enum": ["global_en", "ua", null],
+      "description": "Geographic/language proxy used during scrape: global_en (US proxy) or ua (UA proxy)"
+    },
+    "text_language": {
+      "type": ["string", "null"],
+      "description": "Detected caption/caption language code (en, uk, ru, …). Null if not detected."
     }
   },
   "additionalProperties": false
