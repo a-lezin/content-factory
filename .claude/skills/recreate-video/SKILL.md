@@ -7,25 +7,24 @@ description: Apply a proven video template to a product — generate a shot-form
 
 ## Pre-flight
 
-Read `viral-factory.config.yaml`. If the config is not at the repo root, the template lives at `viral-factory/viral-factory.config.yaml`. Extract `product.*` and `audience.*`.
+1. Read `viral-factory.config.yaml`. Extract `active_project`. Throughout this skill, `{project}` = that value.
+2. Read `projects/{project}/config.yaml`. Extract `product.*` and `audience.*`.
+3. Ask the user (if not specified):
+   - Which hook number to use? (from the product spec — "run /spec-from-niche first if no spec exists")
+   - Which format template? (from `projects/{project}/video-templates.md` — list available templates by name)
 
-Ask the user (if not specified):
-1. Which hook number to use? (from the product spec — "run /spec-from-niche first if no spec exists")
-2. Which format template? (from `viral-factory/reference/video-templates.md` — list available templates by name)
-
-Defaults if user doesn't answer:
-- Hook: #1 from the spec
-- Template: first entry in `viral-factory/reference/video-templates.md` that matches the niche
-
-Check that `artifacts/viral-factory/specs/{product_slug}.md` exists. If not — tell the user to run `/spec-from-niche` first and stop.
+   Defaults if user doesn't answer:
+   - Hook: #1 from the spec
+   - Template: first entry in `projects/{project}/video-templates.md` that matches the niche
+4. Check that `artifacts/viral-factory/{project}/specs/{product_slug}.md` exists. If not — tell the user to run `/spec-from-niche` first and stop.
 
 ---
 
 ## Step 1 — Load inputs
 
 Read:
-- Product spec: `artifacts/viral-factory/specs/{product_slug}.md`
-- Chosen template: the matching entry from `viral-factory/reference/video-templates.md`
+- Product spec: `artifacts/viral-factory/{project}/specs/{product_slug}.md`
+- Chosen template: the matching entry from `projects/{project}/video-templates.md`
 - Config: `product.one_demo_feature`, `product.brand_voice`, `audience.slang`, `audience.portrait`
 
 Identify the template's swap points (from the template entry). These are the only elements you change.
@@ -61,7 +60,7 @@ Example structure:
 [26–30s] CTA: "{CTA from template, adapted to product.name}"
 ```
 
-Write the full script to `artifacts/viral-factory/scripts/{product_slug}-hook{n}.md`.
+Write the full script to `artifacts/viral-factory/{project}/scripts/{product_slug}-hook{n}.md`.
 
 ---
 
@@ -134,7 +133,7 @@ Do not auto-generate multiple videos without user confirmation — generation co
 ## Step 8 — Report to user
 
 Tell the user:
-1. Script location: `artifacts/viral-factory/scripts/{product_slug}-hook{n}.md`
+1. Script location: `artifacts/viral-factory/{project}/scripts/{product_slug}-hook{n}.md`
 2. Video URL (if generated)
 3. Virality scores: pre-flight (script) and post-generation (video) if both obtained
 4. The single highest-leverage change to improve performance:

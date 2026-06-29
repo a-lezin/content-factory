@@ -1,13 +1,14 @@
 ---
 name: decompose-video
-description: Decompose one viral video into a reusable format template — hook, structure, novelty element — and append it to viral-factory/reference/video-templates.md. Downloads and transcribes the video, then runs the video-analyst agent. Trigger whenever the user shares a TikTok or Instagram Reels URL and wants to understand or template it — phrases like "decompose video", "розбери відео", "analyze video", "break down video", "template this video", "що робить це відео вірусним".
+description: Decompose one viral video into a reusable format template — hook, structure, novelty element — and append it to projects/{active_project}/video-templates.md. Downloads and transcribes the video, then runs the video-analyst agent. Trigger whenever the user shares a TikTok or Instagram Reels URL and wants to understand or template it — phrases like "decompose video", "розбери відео", "analyze video", "break down video", "template this video", "що робить це відео вірусним".
 ---
 
 # decompose-video
 
 ## Pre-flight
 
-Ask the user for a video URL if they haven't provided one. Accept TikTok (`tiktok.com/@.../video/...`) or Instagram Reels (`instagram.com/reel/...`) URLs.
+1. Read `viral-factory.config.yaml` and extract `active_project`. Throughout this skill, `{project}` = that value.
+2. Ask the user for a video URL if they haven't provided one. Accept TikTok (`tiktok.com/@.../video/...`) or Instagram Reels (`instagram.com/reel/...`) URLs.
 
 ---
 
@@ -78,6 +79,7 @@ Synthesize a template entry from the extraction result and metadata:
 ## Template: {format} — {hook_type}
 Source: {url}
 Added: {date}
+Project: {project}
 OutlierScore: {value or "unknown"}
 NicheScore: {value or "unknown"}
 Virality score (Higgsfield): {value or "not scored"}
@@ -113,14 +115,14 @@ Author: {author}
 
 ## Step 7 — Append to catalog
 
-Append the template entry to `viral-factory/reference/video-templates.md`. Do not overwrite or replace existing entries — append after the last `---` divider.
+Append the template entry to `projects/{project}/video-templates.md`. Create the file if it doesn't exist (add a header `# Video Templates: {project}` on first creation). Do not overwrite or replace existing entries — append after the last `---` divider.
 
 ---
 
 ## Step 8 — Report to user
 
 Tell the user:
-1. "Template added to viral-factory/reference/video-templates.md"
+1. "Template added to projects/{project}/video-templates.md"
 2. The format label and hook type
 3. Template replicability score and what it means in plain language
 4. The 2 most important swap points in one sentence

@@ -1,0 +1,41 @@
+# Проєкт: ai-accountant
+# Щоб зробити цей проєкт активним: встановіть active_project: ai-accountant у viral-factory.config.yaml
+# TODO: заповніть поля перед запуском /discover-niche
+
+niche:
+  slug: ai-accountant
+  keywords:
+    - "AI бухгалтер"
+    - "автоматизація бухгалтерії"
+    - "бухгалтерія для ФОП"
+    - "штучний інтелект фінанси"
+    - "автоматизація звітності"
+    - "бухгалтер онлайн"
+  accounts: []           # TODO: додати хендли конкурентів після ресерчу
+  shop_queries:
+    - "бухгалтерська програма"
+    - "онлайн бухгалтерія"
+
+thresholds:
+  min_views: 10000
+  min_comments: 50
+  min_outlier: 5
+
+product:
+  name: TBD             # TODO: назва продукту
+  slug: ai-accountant
+  one_demo_feature: >
+    # TODO: що відбувається на екрані за 30 секунд — яку рутину AI робить замість бухгалтера?
+  brand_voice: >
+    # TODO: тон, лексика, що уникати
+  screen_record_path: "assets/ai-accountant-demo.mp4"
+
+audience:
+  portrait: >
+    # TODO: хто це — ФОПи, власники малого бізнесу? Що їх болить?
+  slang:
+    - "звітність"
+    - "ФОП"
+    - "єдиний податок"
+    - "бухгалтер коштує дорого"
+    # TODO: розширити після /discover-niche comment-miner

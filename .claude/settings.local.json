@@ -13,7 +13,10 @@
       "mcp__claude_ai_apify__fetch-actor-details",
       "mcp__claude_ai_apify__call-actor",
       "mcp__claude_ai_apify__get-actor-run",
-      "mcp__claude_ai_apify__get-dataset-items"
+      "mcp__claude_ai_apify__get-dataset-items",
+      "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"PATH\", \"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"PATH\", \"User\"\\); cd \"C:\\\\Users\\\\User\\\\Documents\\\\workshop\"; git pull origin master)",
+      "Bash(gh issue *)",
+      "Bash(git add *)"
     ]
   }
 }

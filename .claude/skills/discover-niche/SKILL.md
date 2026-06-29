@@ -1,6 +1,6 @@
 ---
 name: discover-niche
-description: Run the full Content-Market Fit pipeline for a niche defined in viral-factory.config.yaml — scrape TikTok, score, fan-out video/comment analysis, cluster pain points, and write a niche report at artifacts/viral-factory/niches/{slug}.md. Trigger whenever the user wants to find, validate, or analyze a viral niche — phrases like "discover niche", "find niche", "знайди нішу", "що залітає", "analyze niche", "validate niche", "яка ніша", or any request to figure out what content is going viral in a vertical.
+description: Run the full Content-Market Fit pipeline for a niche defined in projects/{active_project}/config.yaml — scrape TikTok, score, fan-out video/comment analysis, cluster pain points, and write a niche report at artifacts/viral-factory/{active_project}/niches/{slug}.md. Trigger whenever the user wants to find, validate, or analyze a viral niche — phrases like "discover niche", "find niche", "знайди нішу", "що залітає", "analyze niche", "validate niche", "яка ніша", or any request to figure out what content is going viral in a vertical.
 ---
 
 # discover-niche
@@ -12,9 +12,12 @@ description: Run the full Content-Market Fit pipeline for a niche defined in vir
 ## Pre-flight checks
 
 Before starting, verify:
-1. `viral-factory.config.yaml` exists in the repo root. If not, tell the user to create it from the template in the plugin at `viral-factory/viral-factory.config.yaml` and stop.
-2. Apify MCP is connected. If not, tell the user to add it in settings and stop.
-3. Read the config: extract `niche.slug`, `niche.keywords`, `niche.accounts`, `niche.shop_queries`, and all `thresholds.*`.
+1. `viral-factory.config.yaml` exists in the repo root. Read it and extract `active_project` (the active project slug).
+2. Per-project config exists at `projects/{active_project}/config.yaml`. If not — tell the user to create it (copy template from `viral-factory/viral-factory.config.yaml`) and stop.
+3. Apify MCP is connected. If not, tell the user to add it in settings and stop.
+4. Read the per-project config: extract `niche.slug`, `niche.keywords`, `niche.accounts`, `niche.shop_queries`, and all `thresholds.*`.
+
+Throughout this skill, `{project}` = `active_project` value, `{slug}` = `niche.slug`.
 
 ---
 
@@ -56,8 +59,8 @@ Run `npx ts-node viral-factory/scripts/scrape.ts` to print the Apify call instru
 - Map to `TikTokShopProduct[]`
 
 **1h. Write raw output:**
-- `artifacts/viral-factory/raw/{slug}.json` — array of CollectionRecord
-- `artifacts/viral-factory/raw/{slug}-shop.json` — array of TikTokShopProduct
+- `artifacts/viral-factory/{project}/raw/{slug}.json` — array of CollectionRecord
+- `artifacts/viral-factory/{project}/raw/{slug}-shop.json` — array of TikTokShopProduct
 
 Verify the output file exists and contains at least 10 video records. If fewer — warn the user that the niche may have thin coverage and ask whether to continue.
 
@@ -68,9 +71,9 @@ Verify the output file exists and contains at least 10 video records. If fewer �
 Run:
 ```
 npx ts-node viral-factory/scripts/score.ts \
-  --input artifacts/viral-factory/raw/{slug}.json \
-  --output artifacts/viral-factory/scored/{slug}.json \
-  --shop-data artifacts/viral-factory/raw/{slug}-shop.json
+  --input artifacts/viral-factory/{project}/raw/{slug}.json \
+  --output artifacts/viral-factory/{project}/scored/{slug}.json \
+  --shop-data artifacts/viral-factory/{project}/raw/{slug}-shop.json
 ```
 
 Read the scored output. Select the **top 10 videos** by `niche_score`. If fewer than 10 videos passed the view filter, use all available.
@@ -88,7 +91,7 @@ For each of the top-10 videos, launch a `video-analyst` sub-agent in parallel. P
 
 Wait for all agents to complete. Collect all extraction results.
 
-Save all extractions to `artifacts/viral-factory/extractions/{slug}.json` (array of ExtractionRecord).
+Save all extractions to `artifacts/viral-factory/{project}/extractions/{slug}.json` (array of ExtractionRecord).
 
 If fewer than 6 of 10 agents return valid JSON — report which URLs failed and ask user if they want to re-run those.
 
@@ -102,7 +105,7 @@ For each of the top-10 videos that has `comments` populated (array is non-null a
 
 Wait for all agents to complete. Collect all results.
 
-Save all comment extractions to `artifacts/viral-factory/comments/{slug}.json` (array of CommentMinerRecord).
+Save all comment extractions to `artifacts/viral-factory/{project}/comments/{slug}.json` (array of CommentMinerRecord).
 
 Build a `painDensityMap: Record<video_id, pain_density_score>` from results.
 
@@ -119,9 +122,9 @@ Re-run score update inline (or call `updatePainDensity()` from `viral-factory/sc
 Run:
 ```
 npx ts-node viral-factory/scripts/cluster.ts \
-  --extractions artifacts/viral-factory/extractions/{slug}.json \
-  --comments artifacts/viral-factory/comments/{slug}.json \
-  --output artifacts/viral-factory/clusters/{slug}.json \
+  --extractions artifacts/viral-factory/{project}/extractions/{slug}.json \
+  --comments artifacts/viral-factory/{project}/comments/{slug}.json \
+  --output artifacts/viral-factory/{project}/clusters/{slug}.json \
   --n-clusters 8
 ```
 
@@ -131,12 +134,13 @@ Read the cluster output. Identify the **top 5 clusters** by `frequency × commer
 
 ## Step 7 — Write the niche report
 
-Write `artifacts/viral-factory/niches/{slug}.md` with this exact structure:
+Write `artifacts/viral-factory/{project}/niches/{slug}.md` with this exact structure:
 
 ```markdown
 # Niche Report: {slug}
 Generated: {date}
-Config: viral-factory.config.yaml → niche.slug = {slug}
+Project: {project}
+Config: projects/{project}/config.yaml → niche.slug = {slug}
 
 ## Verdict
 [One paragraph: is this niche worth building in? State the single strongest signal.

@@ -1,23 +1,22 @@
 ---
 name: spec-from-niche
-description: Convert a validated niche report into a structured product spec — positioning, one-demo feature, pricing signal, and top hooks to test — written to artifacts/viral-factory/specs/{product_slug}.md. Trigger whenever the user wants to turn niche research into a product brief or decide what to build — phrases like "spec from niche", "product spec", "зроби spec", "product brief", "що будувати", "build spec from niche", "what should I build".
+description: Convert a validated niche report into a structured product spec — positioning, one-demo feature, pricing signal, and top hooks to test — written to artifacts/viral-factory/{active_project}/specs/{product_slug}.md. Trigger whenever the user wants to turn niche research into a product brief or decide what to build — phrases like "spec from niche", "product spec", "зроби spec", "product brief", "що будувати", "build spec from niche", "what should I build".
 ---
 
 # spec-from-niche
 
 ## Pre-flight
 
-Read `viral-factory.config.yaml`. If the config is not at the repo root, the template lives at `viral-factory/viral-factory.config.yaml`. Extract `niche.slug`, `product.name`, `product.slug`, `product.one_demo_feature`, `product.brand_voice`, `audience.*`.
-
-Check that `artifacts/viral-factory/niches/{slug}.md` exists. If it does not — tell the user: "No niche report found. Run /discover-niche first." and stop.
-
-Check that `artifacts/viral-factory/clusters/{slug}.json` exists. If it does not — tell the user clusters are missing and ask if they want to proceed with the niche report only (less precise).
+1. Read `viral-factory.config.yaml`. Extract `active_project`. Throughout this skill, `{project}` = that value.
+2. Read `projects/{project}/config.yaml`. Extract `niche.slug`, `product.name`, `product.slug`, `product.one_demo_feature`, `product.brand_voice`, `audience.*`.
+3. Check that `artifacts/viral-factory/{project}/niches/{slug}.md` exists. If it does not — tell the user: "No niche report found. Run /discover-niche first." and stop.
+4. Check that `artifacts/viral-factory/{project}/clusters/{slug}.json` exists. If it does not — tell the user clusters are missing and ask if they want to proceed with the niche report only (less precise).
 
 ---
 
 ## Step 1 — Identify the primary pain
 
-Read the cluster JSON from `artifacts/viral-factory/clusters/{slug}.json`.
+Read the cluster JSON from `artifacts/viral-factory/{project}/clusters/{slug}.json`.
 
 Select the cluster with the highest `frequency × commercial_intent_score`. This is the primary pain. If two clusters are within 10% of each other — note both and ask the user to choose (present both as one sentence each in their exact audience language).
 
@@ -95,19 +94,20 @@ List top 5 with source attribution (from niche report hook bank or comment-miner
 From the niche report's "Recurring Formats" section, list the top 3 formats. For each:
 - Format label
 - Example URL from the niche report
-- Template reference in `viral-factory/reference/video-templates.md` (if decomposed — link the entry; if not, note "run /decompose-video on this URL")
+- Template reference in `projects/{project}/video-templates.md` (if decomposed — link the entry; if not, note "run /decompose-video on this URL")
 
 ---
 
 ## Step 8 — Write the spec
 
-Write `artifacts/viral-factory/specs/{product_slug}.md`:
+Write `artifacts/viral-factory/{project}/specs/{product_slug}.md`:
 
 ```markdown
 # Product Spec: {product.name}
 Generated: {date}
+Project: {project}
 Source niche: {slug}
-Niche report: artifacts/viral-factory/niches/{slug}.md
+Niche report: artifacts/viral-factory/{project}/niches/{slug}.md
 
 ## One-line positioning
 {positioning statement}
@@ -134,7 +134,7 @@ TikTok Shop comps: {top product name at $X/mo} | Uncertainty: {low/medium/high}
 5. "{hook}" — [source: ...]
 
 ## Video formats to replicate
-1. {format}: {example URL} | Template: {viral-factory/reference/video-templates.md#anchor or "run /decompose-video"}
+1. {format}: {example URL} | Template: {projects/{project}/video-templates.md#anchor or "run /decompose-video"}
 2. {format}: {example URL} | Template: ...
 3. {format}: {example URL} | Template: ...
 
