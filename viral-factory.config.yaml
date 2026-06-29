@@ -3,4 +3,4 @@
 # Конфіг проєкту живе в: projects/{active_project}/config.yaml
 # Артефакти пайплайну пишуться в: artifacts/viral-factory/{active_project}/...
 
-active_project: pr-pros-ua
+active_project: ai-accountant

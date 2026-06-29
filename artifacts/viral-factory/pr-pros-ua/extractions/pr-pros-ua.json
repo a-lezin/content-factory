@@ -1,0 +1,117 @@
+[
+  {
+    "video_url": "https://www.tiktok.com/@pauletteonthemic/video/7557181464459185438",
+    "hook": "Are you prepared to be monitored 24/7? Well sit down let me tell you bout what is being worked on as we speak!",
+    "hook_type": "question",
+    "structure": ["hook", "agitation", "pain_statement", "credibility", "cta"],
+    "format": "talking-head-rant",
+    "novelty_element": "Creator frames a surveillance/government policy topic using intimate, confrontational direct address ('sit down let me tell you') — turning a dry civic issue into a personal warning delivered as if by a trusted insider, collapsing social distance and driving share behavior as a warning-forwarding reflex.",
+    "product_in_frame": null,
+    "cta": "sit down let me tell you bout what is being worked on as we speak",
+    "pacing": "medium",
+    "sound_role": "original-voiceover",
+    "template_replicability": 0.82,
+    "pain_points": [
+      "fear of mass surveillance without consent",
+      "epistemic pain: 'I didn't know this and I should have'",
+      "collective threat no individual can opt out of"
+    ],
+    "views": 2200000,
+    "shares": 131300,
+    "saves": 84074,
+    "author": "pauletteonthemic",
+    "analyzed_at": "2026-06-29T00:00:00Z"
+  },
+  {
+    "video_url": "https://www.tiktok.com/@nathanhodgson.ai/video/7494715507095145730",
+    "hook": "AI just replaced social media managers.",
+    "hook_type": "bold_claim",
+    "structure": ["hook", "pain_statement", "product_reveal", "demonstration", "cta"],
+    "format": "product-demo",
+    "novelty_element": "Hook uses 'replaced' rather than 'helps' or 'automates' — frames the product as full labor substitution, triggering both fear (for social media managers) and desire (for business owners), making it shareable across two opposing audiences simultaneously.",
+    "product_in_frame": "Riona — AI Agent for social media account management",
+    "cta": "Implied follow/learn more via caption hashtags and author profile",
+    "pacing": "fast-cut",
+    "sound_role": "original-voiceover",
+    "template_replicability": 0.85,
+    "pain_points": [
+      "business owners cannot afford or do not want to pay a social media manager",
+      "professionals anxious about AI job displacement",
+      "need for consistent content output without full-time hire"
+    ],
+    "views": 134400,
+    "shares": 2443,
+    "saves": 7692,
+    "author": "nathanhodgson.ai",
+    "analyzed_at": "2026-06-29T00:00:00Z"
+  },
+  {
+    "video_url": "https://www.tiktok.com/@nocode.joshua/video/7619447769673075975",
+    "hook": "Did Claude Code just kill marketing agencies?",
+    "hook_type": "question",
+    "structure": ["hook", "pain_statement", "credibility", "product_reveal", "demonstration", "cta"],
+    "format": "tutorial-steps",
+    "novelty_element": "Weaponizes a brand name (Claude Code) as agent of disruption against an entire industry — framing a tool tutorial as an industry-killing event rather than a productivity tip, triggering both fear-of-missing-out in agency owners and aspiration in solopreneurs.",
+    "product_in_frame": "Claude Code (used to build a 7-agent marketing team)",
+    "cta": "Watch how to build a marketing team with 7 AI Agents each specialising in a different marketing discipline",
+    "pacing": "medium",
+    "sound_role": "original-voiceover",
+    "template_replicability": 0.82,
+    "pain_points": [
+      "cannot afford a full marketing team as a solopreneur",
+      "agency owners threatened by AI displacement",
+      "need professional marketing without professional budget"
+    ],
+    "views": 502200,
+    "shares": 8125,
+    "saves": 36008,
+    "author": "nocode.joshua",
+    "analyzed_at": "2026-06-29T12:00:00Z"
+  },
+  {
+    "video_url": "https://www.tiktok.com/@cottage.beansoup/video/7631410971675839757",
+    "hook": "Guys be careful this is so scary",
+    "hook_type": "pain_call_out",
+    "structure": ["hook", "agitation", "demonstration", "social_proof", "cta"],
+    "format": "warning-reveal",
+    "novelty_element": "Creator positions themselves as peer-level witness rather than expert — casual grammar signals authentic alarm, collapsing creator-viewer distance and triggering share impulse as a protective reflex toward others in viewer's network.",
+    "product_in_frame": null,
+    "cta": "be careful (implicit warning; no explicit product CTA)",
+    "pacing": "medium",
+    "sound_role": "original-voiceover",
+    "template_replicability": 0.82,
+    "pain_points": [
+      "fear of being deceived or impersonated by AI without knowing it",
+      "universal vulnerability: anyone with voice or face online can be cloned",
+      "feeling unprepared for threats you didn't know existed"
+    ],
+    "views": 9100000,
+    "shares": 122400,
+    "saves": 68128,
+    "author": "cottage.beansoup",
+    "analyzed_at": "2026-06-29T00:00:00Z"
+  },
+  {
+    "video_url": "https://www.tiktok.com/@laviedelalou/video/7627944203368140062",
+    "hook": "Some of my favorite platforms for PR",
+    "hook_type": "bold_claim",
+    "structure": ["hook", "credibility", "resource_list", "social_proof", "cta"],
+    "format": "resource-list",
+    "novelty_element": "Frames a resource list as personal curation ('my favorites') rather than generic advice — possessive framing signals insider access and elevates perceived authority without requiring visible credentials.",
+    "product_in_frame": null,
+    "cta": "Lmk if you know any other ones",
+    "pacing": "medium",
+    "sound_role": "music-mood",
+    "template_replicability": 0.92,
+    "pain_points": [
+      "aspiring influencers don't know how to approach brands for PR packages",
+      "feeling locked out of the brand-deal system",
+      "information scarcity in gated niches"
+    ],
+    "views": 205700,
+    "shares": 3012,
+    "saves": 18429,
+    "author": "laviedelalou",
+    "analyzed_at": "2026-06-29T00:00:00Z"
+  }
+]
